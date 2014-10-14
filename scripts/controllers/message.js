@@ -12,7 +12,9 @@ angular.module('chattyApp')
 		if ($scope.chat.msg === ''){
 			return;
 		} 
-		MessageService.postMessage($scope.chat.msg).then(function(data) {
+		MessageService.postMessage($scope.chat).then(function(data) {
+			$scope.chat.msg = '';
+			$scope.chat.user = '';
   			$scope.messages = data;
 		});
 	};

@@ -6,7 +6,9 @@
 	<form>
 	    <div class="form-group">
 	        <label>Message</label>
+	        <input ng-model="chat.user" type="text" class="form-control" placeholder="Enter in a username">
 	        <input ng-submit="sendMessage()" ng-model="chat.msg" type="text" class="form-control" placeholder="Enter a message">
+
 	    </div>
 	    <button ng-click="sendMessage()" class="btn btn-primary">Submit Message</button>
 	</form>
@@ -14,6 +16,9 @@
 <div class="col-md-6">
 	<h4>Latest Chats:</h4>
 	<div ng-repeat="message in messages" class="jumbotron">
-		{{message.message}}
+		<h3>{{message.message}}</h3><br/>
+		<div class="text-muted">{{message.timeStamp | date:'MM/dd/yyyy @ h:mma'}}</div>
+		<small>By: {{message.user}}</small>
 	</div>	
 </div>
+ 

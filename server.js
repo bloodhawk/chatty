@@ -24,13 +24,18 @@ var onRequest = function (req, res) {
     }
 
     if (req.method == 'POST') {
-        msgData = ''
+        msgData = '';
         req.on('data', function (data) {
             msgData += data.toString();
         });
         req.on('end', function () {
             var parsed = JSON.parse(msgData);
-            messages.push(parsed);
+            var obj = {};
+            obj.message = parsed.msg;
+            obj.user = parsed.user;
+            var date = new Date().toISOString();
+            obj.timeStamp = date;
+            messages.push(obj);
             res.writeHead(200, {
                     "Content-Type": 'application/json',
                     "Connection": 'close',
@@ -38,7 +43,7 @@ var onRequest = function (req, res) {
                     "Access-Control-Allow-Methods": 'OPTIONS, GET, POST',
                     "Access-Control-Allow-Headers": 'Origin, X-Requested-With, Content-Type, Accept'
             });
-            var response = JSON.stringify(messages)
+            var response = JSON.stringify(messages);
             res.end(response);
         });
     }
