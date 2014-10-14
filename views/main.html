@@ -16,7 +16,7 @@
 <div class="col-md-6">
 	<h4>Latest Chats:</h4>
 	<div ng-repeat="message in messages" class="jumbotron">
-		<h3>{{message.message}}</h3><br/>
+		<h3>{{message.msg}}</h3><br/>
 		<div class="text-muted">{{message.timeStamp | date:'MM/dd/yyyy @ h:mma'}}</div>
 		<small>By: {{message.user}}</small>
 	</div>	

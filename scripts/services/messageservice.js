@@ -11,7 +11,8 @@ angular.module('chattyApp')
     };
     this.postMessage = function(message){
     	var defer = $q.defer();
-    	$http.post('http://localhost:8500', message).then(function(data){
+    	$http.post('http://localhost:8500/messages', message).then(function(data){
+            console.log(data.data);
     		var messages = data.data;
     		defer.resolve(messages);
     	});
